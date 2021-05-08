@@ -11,28 +11,43 @@ Product.init(
   {
     // define columns
     id: {
-      type: DataTypes.INTEGERS,
+      type: DataTypes.INTEGER,
       primaryKey: true,
-      allownull: false,
-      autoincrement: true
+      allowNull: false,
+      autoIncrement: true
     },
 
-    product_id: {
-      type: DataTypes.INTEGERS,
-      references: {
-        model: 'product',
-        key: 'id'
+    product_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
+    price: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+      validate: {
+        isDecimal: true
+      }
+    },
+
+    stock: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 10,
+      validate: {
+        isNumeric: true
       }
     },
     
-    tag_id:{
-      tupe: DataTypes.INTEGERS,
+    category_id: {
+      type: DataTypes.INTEGER,
       references: {
-        model: 'tag',
+        model: 'category',
         key: 'id'
       }
     }
   },
+    
 
   {
     sequelize,
